@@ -3,8 +3,8 @@ const puppeteer = require('puppeteer');
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://www.baixarfilmetorrenthd.com/genero/filmes/?orderby=lancamento');
-  await page.screenshot({path: 'download.png'});
+  await page.goto('URL');
+  await page.screenshot({path: 'screenshot.png'});
 
   const titleMovie = await page.evaluate(() => {
     let movieTitleHeading = document.querySelectorAll(".titulo"); 
@@ -27,17 +27,10 @@ const movie = await page.evaluate(() => {
 
   const hrefs = await page.$$eval('td-mv-dow', as => as.map(a => a.href));
 
-    console.log("Title Movies:");
-    console.log(titleMovie);
-
-    console.log("Movies:");
-    console.log(movie);
-
-    console.log("Links_page:");
-    console.log(hrefs);
-
-    console.log("Links:");
-    console.log(resultLinks);
+    console.log(`Title Movies:` + titleMovie);
+    console.log(`Movies:` + movie);
+    console.log(`Links_page:` + hrefs);
+    console.log(`Links:` + resultLinks);
 
   await browser.close();
 })();
